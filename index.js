@@ -42,7 +42,14 @@ app.use(express.urlencoded({ extended: true }));
 
 // simple route
 app.post("/api/artisan", async (req, res) => {
-  const { phoneNumber: id, response: message } = req.body;
+  // const { phoneNumber: id, response: message } = req.body;
+  const {
+    payload: {
+      type,
+      text: message,
+      user: { id, name, image },
+    },
+  } = req.body;
 
   try {
     // check if there is a stage process
