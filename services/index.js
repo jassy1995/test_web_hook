@@ -17,13 +17,30 @@ const getStates = async () => (await instance.get("/states", config)).data;
 const getLgas = async (query) =>
   (await instance.get(`/states/lgas/${query}`, config)).data;
 
-const sendResponse = async (message, phone) =>
-  (
-    await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
-      message,
-      phone,
-    })
-  ).data;
+const sendResponse = async (message, phone) => {
+  try {
+    const json = {
+      phone: phone.replace(/^0/, "234"),
+      message: message?.payload
+        ? {
+            ...message?.payload,
+          }
+        : message,
+    };
+    let result = await axios
+      .post("https://bnpl-chatbot-server.herokuapp.com/direct", { json })
+      .json();
+    return result.data;
+  } catch (e) {
+    console.log(e?.response?.body ?? e);
+  }
+};
+// (
+//   await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
+//     message,
+//     phone,
+//   })
+// ).data;
 module.exports = {
   getServices,
   searchUser,
