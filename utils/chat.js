@@ -90,10 +90,10 @@ const menuOptions = [
 // };
 
 const welcomeResponse = productsButtons("how do we help you today?", [
-  { type: "reply", reply: { id: 1, title: "Render Service (Artisan)" } },
+  { type: "reply", reply: { id: "1", title: "Render Service (Artisan)" } },
   {
     type: "reply",
-    reply: { id: 2, title: "Request Service Provider(Customer)" },
+    reply: { id: "2", title: "Request Service Provider(Customer)" },
   },
 ]);
 
@@ -101,8 +101,14 @@ const welcomeResponse = productsButtons("how do we help you today?", [
 const getIndexedForService = (data, returnKey) => {
   if (!data) throw new Error("endpoints not found");
   return returnKey
-    ? data.map((entity, index) => ({ id: index + 1, title: entity[returnKey] }))
-    : data.map((entity, index) => ({ id: index + 1, title: entity }));
+    ? data.map((entity, index) => ({
+        id: `${index + 1}`,
+        title: entity[returnKey],
+      }))
+    : data.map((entity, index) => ({
+        id: `${index + 1}`,
+        title: entity,
+      }));
 };
 
 const getIndexedString = (data, returnKey) => {
@@ -129,6 +135,7 @@ const getRightQuestions = async (existedUserStage, nextStepSuccessor) => {
       const { data: services } = await getServices();
       // finalQuestion = `${nextQuestion} \n${getIndexedString(services)}`;
       finalQuestion = listButtons(nextQuestion, getIndexedForService(services));
+      console.log(finalQuestion);
       break;
     case "state":
       const stateResponse = await getStates();

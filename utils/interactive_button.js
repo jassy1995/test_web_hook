@@ -6,12 +6,9 @@ const productsButtons = (info, button) => {
         type: "button",
         header: {
           type: "text",
-          text: "Welcome",
+          text: `Welcome,${info}`,
         },
         body: {
-          text: info,
-        },
-        footer: {
           text: "To continue click your prefer option.",
         },
         action: {

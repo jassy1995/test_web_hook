@@ -230,7 +230,8 @@ app.post("/api/artisan", async (req, res) => {
       }
     }
   } catch (err) {
-    return res.status(500).json({ err: "error occur" });
+    // return res.status(500).json({ err: "error occur" });
+    console.log(err);
   }
   // await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
   //   message: "Invalid Request",
