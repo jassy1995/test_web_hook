@@ -89,14 +89,13 @@ const menuOptions = [
 //   ),
 // };
 
-const welcomeResponse = productsButtons(
-  "how do we help you today?",
-  [
-    { id: 1, title: "Render Service (Artisan)" },
-    { id: 2, title: "Request Service Provider(Customer)" },
-  ],
-  "messagebird"
-);
+const welcomeResponse = productsButtons("how do we help you today?", [
+  { type: "reply", reply: { id: 1, title: "Render Service (Artisan)" } },
+  {
+    type: "reply",
+    reply: { id: 2, title: "Request Service Provider(Customer)" },
+  },
+]);
 
 // const services = ["Plumber", "Carpenter", "AC Repairs"];
 const getIndexedForService = (data, returnKey) => {
