@@ -51,6 +51,16 @@ app.post("/api/artisan", async (req, res) => {
     },
   } = req.body;
 
+  // const messageType = type && type;
+  // const messageImage = image ? image : null;
+  // const messageName = name?name:null;
+  // if (type === "image") {
+  //  message="image"
+  // }
+  // if (type === "location") {
+  //   message="location"
+  // }
+
   try {
     // check if there is a stage process
     // console.log(Stage, typeof Stage);
@@ -71,8 +81,8 @@ app.post("/api/artisan", async (req, res) => {
       // await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
       //   message: welcomeResponse,
       // });
-      let response1 = await sendResponse(welcomeResponse.message, id);
-      return res.json({ welcomeResponse, ...response1 });
+      // let response1 = await sendResponse(welcomeResponse.message, id);
+      return res.json("yesttt");
     }
     const existedUserStage = stageResponse.dataValues;
     // console.log("origig", existedUserStage);
@@ -91,10 +101,7 @@ app.post("/api/artisan", async (req, res) => {
           "Thank you, it seems you have already registered with us",
           id
         );
-        return res.send({
-          message: "Thank you, it seems you have already registered with us",
-          ...response2,
-        });
+        return res.send(response2);
       }
     }
 
@@ -114,8 +121,8 @@ app.post("/api/artisan", async (req, res) => {
       // await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
       //   message: welcomeResponse,
       // });
-      let response3 = await sendResponse(welcomeResponse.message, id);
-      return res.send({ welcomeResponse, ...response3 });
+      let response3 = await sendResponse(welcomeResponse, id);
+      return res.send(response3);
     }
 
     if (nextStep) {
@@ -156,7 +163,7 @@ app.post("/api/artisan", async (req, res) => {
           //   message: response,
           // });
           let response4 = await sendResponse(response.message, id);
-          return res.send({ response, ...response4 });
+          return res.send(response4);
         }
 
         if (nextStep === "artisan") {
@@ -180,7 +187,7 @@ app.post("/api/artisan", async (req, res) => {
           //   message: response,
           // });
           let response5 = await sendResponse(response.message, id);
-          return res.send({ response, ...response5 });
+          return res.send(response5);
         }
 
         if (nextStep === "state") {
@@ -219,7 +226,7 @@ app.post("/api/artisan", async (req, res) => {
         //   message: response,
         // });
         let response6 = await sendResponse(response.message, id);
-        return res.send({ response, ...response6 });
+        return res.send(response6);
       }
     }
   } catch (err) {
@@ -229,7 +236,7 @@ app.post("/api/artisan", async (req, res) => {
   //   message: "Invalid Request",
   // });
   let response7 = await sendResponse("Invalid Request!", id);
-  return res.status(400).send({ message: "Invalid Request!", ...response7 });
+  return res.status(400).send(response7);
 });
 
 const PORT = process.env.PORT || 1718;

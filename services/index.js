@@ -36,6 +36,11 @@ const sendResponse = async (message, phone) => {
     console.log(e?.response?.body ?? e);
   }
 };
+
+// const sendResponse2 = async (message, phone, type, name, image) => ({
+//   payload: { type, user: { id: phone, name, image }, text: message },
+// });
+
 // (
 //   await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
 //     message,
@@ -49,4 +54,5 @@ module.exports = {
   getStates,
   getLgas,
   sendResponse,
+  // sendResponse2,
 };
