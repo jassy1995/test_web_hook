@@ -81,8 +81,8 @@ app.post("/api/artisan", async (req, res) => {
       // await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
       //   message: welcomeResponse,
       // });
-      // let response1 = await sendResponse(welcomeResponse.message, id);
-      return res.json("yesttt");
+      let response1 = await sendResponse(welcomeResponse.message, id);
+      return res.json(response1);
     }
     const existedUserStage = stageResponse.dataValues;
     // console.log("origig", existedUserStage);
