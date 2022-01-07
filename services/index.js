@@ -37,16 +37,6 @@ const sendResponse = async (message, phone) => {
   }
 };
 
-// const sendResponse2 = async (message, phone, type, name, image) => ({
-//   payload: { type, user: { id: phone, name, image }, text: message },
-// });
-
-// (
-//   await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
-//     message,
-//     phone,
-//   })
-// ).data;
 module.exports = {
   getServices,
   searchUser,

@@ -78,17 +78,6 @@ const menuOptions = [
 // 	)}`,
 // };
 
-// const welcomeResponse = {
-//   message: productsButtons(
-//     "how do we help you today?",
-//     [
-//       { id: 1, title: "Render Service (Artisan)" },
-//       { id: 2, title: "Request Service Provider(Customer)" },
-//     ],
-//     "messagebird"
-//   ),
-// };
-
 const welcomeResponse = productsButtons("how do we help you today?", [
   { type: "reply", reply: { id: "1", title: "Render Service (Artisan)" } },
   {

@@ -51,16 +51,6 @@ app.post("/api/artisan", async (req, res) => {
     },
   } = req.body;
 
-  // const messageType = type && type;
-  // const messageImage = image ? image : null;
-  // const messageName = name?name:null;
-  // if (type === "image") {
-  //  message="image"
-  // }
-  // if (type === "location") {
-  //   message="location"
-  // }
-
   try {
     // check if there is a stage process
     // console.log(Stage, typeof Stage);
@@ -78,9 +68,6 @@ app.post("/api/artisan", async (req, res) => {
     if (!stageResponse) {
       // fill greetings and respond with the first message
       await Stage.create({ id });
-      // await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
-      //   message: welcomeResponse,
-      // });
       let response1 = await sendResponse(welcomeResponse.message, id);
       return res.json(response1);
     }
@@ -94,9 +81,6 @@ app.post("/api/artisan", async (req, res) => {
       // maybe the key register is looking if phone_number as opposed to user_id
       // toggle this for menu one and two
       if (artisan.status) {
-        // await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
-        //   message: "Thank you, it seems you have already registered with us",
-        // });
         let response2 = await sendResponse(
           "Thank you, it seems you have already registered with us",
           id
@@ -118,9 +102,6 @@ app.post("/api/artisan", async (req, res) => {
     const nextStepSuccessor = nullStageKeys[1];
     if (message === "restart") {
       await Stage.destroy({ where: { id } });
-      // await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
-      //   message: welcomeResponse,
-      // });
       let response3 = await sendResponse(welcomeResponse, id);
       return res.send(response3);
     }
@@ -159,9 +140,6 @@ app.post("/api/artisan", async (req, res) => {
             message:
               "\nThank you for registering.\nTo complete your registration, kindly make payment of N500 with any of the following options.\n1:Dial *…#\n2: make a transfer to wema bank and upload evidence of payment",
           };
-          // await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
-          //   message: response,
-          // });
           let response4 = await sendResponse(response.message, id);
           return res.send(response4);
         }
@@ -183,9 +161,6 @@ app.post("/api/artisan", async (req, res) => {
             message:
               "For payment, pay into the account number of the selected artisan. “ Please note that we are not liable to any damages if payment is not made into the right account number of the right artisan” Any complaints regarding selected vendor can be made on this chat too.",
           };
-          // await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
-          //   message: response,
-          // });
           let response5 = await sendResponse(response.message, id);
           return res.send(response5);
         }
@@ -222,9 +197,6 @@ app.post("/api/artisan", async (req, res) => {
         const response = {
           message: await getRightQuestions(existedUserStage, nextStepSuccessor),
         };
-        // await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
-        //   message: response,
-        // });
         let response6 = await sendResponse(response.message, id);
         return res.send(response6);
       }
@@ -233,9 +205,6 @@ app.post("/api/artisan", async (req, res) => {
     // return res.status(500).json({ err: "error occur" });
     console.log(err);
   }
-  // await axios.post("https://bnpl-chatbot-server.herokuapp.com/direct", {
-  //   message: "Invalid Request",
-  // });
   let response7 = await sendResponse("Invalid Request!", id);
   return res.status(400).send(response7);
 });
