@@ -29,7 +29,7 @@ const sendResponse = async (message, phone) => {
     };
     let result = await axios.post(
       "https://bnpl-chatbot-server.herokuapp.com/direct",
-      { json }
+      json
     );
     return result.data;
   } catch (e) {
