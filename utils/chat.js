@@ -79,10 +79,10 @@ const menuOptions = [
 // };
 
 const welcomeResponse = productsButtons("how do we help you today?", [
-  { type: "reply", reply: { id: "1", title: "Render Service (Artisan)" } },
+  { type: "reply", reply: { id: `${1}`, title: "Render Service (Artisan)" } },
   {
     type: "reply",
-    reply: { id: "2", title: "Request Service Provider(Customer)" },
+    reply: { id: `${2}`, title: "Request Service Provider(Customer)" },
   },
 ]);
 
@@ -124,7 +124,7 @@ const getRightQuestions = async (existedUserStage, nextStepSuccessor) => {
       const { data: services } = await getServices();
       // finalQuestion = `${nextQuestion} \n${getIndexedString(services)}`;
       finalQuestion = listButtons(nextQuestion, getIndexedForService(services));
-      console.log(finalQuestion);
+      // console.log(finalQuestion);
       break;
     case "state":
       const stateResponse = await getStates();
