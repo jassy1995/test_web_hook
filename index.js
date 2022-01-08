@@ -125,7 +125,7 @@ app.post("/api/artisan", async (req, res) => {
         }
         // menu type to be checked in any case both menu has picture in the
         // future, the same for artisan
-        if (nextStep === "picture" || type == "image") {
+        if (nextStep === "picture" || type === "image") {
           existedUserStage[nextStep] = message;
           const { id, menu } = existedUserStage;
           saveOnlyNeedValues(menu, existedUserStage);
@@ -203,14 +203,15 @@ app.post("/api/artisan", async (req, res) => {
         };
         let response6 = await sendResponse(response.message, id);
         return res.send(response6);
+      } else {
+        let response7 = await sendResponse("Invalid Request!", id);
+        return res.status(400).send(response7);
       }
     }
   } catch (err) {
     // return res.status(500).json({ err: "error occur" });
     console.log(err);
   }
-  let response7 = await sendResponse("Invalid Request!", id);
-  return res.status(400).send(response7);
 });
 
 const PORT = process.env.PORT || 1718;
