@@ -125,14 +125,13 @@ app.post("/api/artisan", async (req, res) => {
         }
         // menu type to be checked in any case both menu has picture in the
         // future, the same for artisan
-        if (nextStep === "picture" || type === "image") {
+        if (nextStep === "picture") {
           existedUserStage[nextStep] = message;
           const { id, menu } = existedUserStage;
           saveOnlyNeedValues(menu, existedUserStage);
           const newArtisanComplete = {
             ...existedUserStage,
             user_id: id,
-            picture: image,
           };
 
           await ArtisanComplete.create(newArtisanComplete);
