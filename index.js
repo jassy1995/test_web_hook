@@ -125,7 +125,7 @@ app.post("/api/artisan", async (req, res) => {
         }
         // menu type to be checked in any case both menu has picture in the
         // future, the same for artisan
-        if (nextStep === "picture") {
+        if (nextStep === "picture" || type == "image") {
           existedUserStage[nextStep] = message;
           const { id, menu } = existedUserStage;
           saveOnlyNeedValues(menu, existedUserStage);
