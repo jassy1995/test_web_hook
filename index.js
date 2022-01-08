@@ -119,7 +119,7 @@ app.post("/api/artisan", async (req, res) => {
           // existedUserStage[nextStep] = Number(message);
 
           stageResponse.menu = message;
-          initContrastToInstance(Number(message), stageResponse);
+          initContrastToInstance(message, stageResponse);
 
           break;
         }
@@ -129,7 +129,11 @@ app.post("/api/artisan", async (req, res) => {
           existedUserStage[nextStep] = message;
           const { id, menu } = existedUserStage;
           saveOnlyNeedValues(menu, existedUserStage);
-          const newArtisanComplete = { ...existedUserStage, user_id: id };
+          const newArtisanComplete = {
+            ...existedUserStage,
+            user_id: id,
+            picture: image,
+          };
 
           await ArtisanComplete.create(newArtisanComplete);
           await registerUser(newArtisanComplete);
